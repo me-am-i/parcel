@@ -12,7 +12,7 @@ import path from 'path';
 import TargetResolver from './TargetResolver';
 
 // Default cache directory name
-const DEFAULT_CACHE_DIR = '.parcel-cache';
+const DEFAULT_CACHE_DIRNAME = '.parcel-cache';
 
 export default async function resolveOptions(
   initialOptions: InitialParcelOptions
@@ -42,10 +42,7 @@ export default async function resolveOptions(
   return {
     env: process.env,
     ...initialOptions,
-    cacheDir:
-      initialOptions.cacheDir != null
-        ? initialOptions.cacheDir
-        : DEFAULT_CACHE_DIR,
+    cacheDir: path.resolve(initialOptions.cacheDir ?? DEFAULT_CACHE_DIRNAME),
     entries,
     rootDir,
     targets,
